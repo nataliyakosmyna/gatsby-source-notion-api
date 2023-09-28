@@ -3,9 +3,9 @@ const { errorMessage } = require("../error-message")
 const { getBlocks } = require("./get-blocks")
 
 // https://developers.notion.com/reference/errors#rate-limits
-const RATE_LIMIT = 1000/3;
+const RATE_LIMIT = 1000 / 3
 
-const delay = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms = 1000) => new Promise((resolve) => setTimeout(resolve, ms))
 
 async function fetchPageChildren({ page, token, notionVersion }, reporter, cache) {
 	let cacheKey = `notionApiPageChildren:${page.id}:${page.last_edited_time}`
@@ -37,9 +37,9 @@ exports.getPages = async ({ token, databaseId, notionVersion = "2022-06-28" }, r
 			body.start_cursor = startCursor
 		}
 
-		let result;
+		let result = {}
 		try {
-			result = await fetch(url, {
+			const raw = await fetch(url, {
 				method: "POST",
 				body: JSON.stringify(body),
 				headers: {
@@ -47,7 +47,9 @@ exports.getPages = async ({ token, databaseId, notionVersion = "2022-06-28" }, r
 					"Notion-Version": notionVersion,
 					Authorization: `Bearer ${token}`,
 				},
-			}).then((res) => res.json())
+			})
+			const text = await raw.text()
+			result = JSON.parse(text)
 			await delay(RATE_LIMIT)
 
 			startCursor = result.next_cursor
@@ -58,7 +60,7 @@ exports.getPages = async ({ token, databaseId, notionVersion = "2022-06-28" }, r
 				pages.push(page)
 			}
 		} catch (e) {
-			console.error("@attentivu/gatsby-source-notion-api", e, result);
+			console.error("@attentivu/gatsby-source-notion-api", e, result)
 			reporter.panic(errorMessage)
 		}
 	}

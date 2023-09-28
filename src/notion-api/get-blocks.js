@@ -1,7 +1,6 @@
 const fetch = require("node-fetch")
 const { errorMessage } = require("../error-message")
 
-
 exports.getBlocks = async ({ id, notionVersion, token }, reporter) => {
 	let hasMore = true
 	let blockContent = []
@@ -14,15 +13,17 @@ exports.getBlocks = async ({ id, notionVersion, token }, reporter) => {
 			url += `?start_cursor=${startCursor}`
 		}
 
-		let result;
+		let result = {}
 		try {
-			result = await fetch(url, {
+			const raw = await fetch(url, {
 				headers: {
 					"Content-Type": "application/json",
 					"Notion-Version": notionVersion,
 					Authorization: `Bearer ${token}`,
 				},
-			}).then((res) => res.json())
+			})
+			const text = await raw.text()
+			result = JSON.parse(text)
 
 			for (let childBlock of result.results) {
 				if (childBlock.has_children) {
@@ -37,7 +38,7 @@ exports.getBlocks = async ({ id, notionVersion, token }, reporter) => {
 			startCursor = result.next_cursor
 			hasMore = result.has_more
 		} catch (e) {
-			console.error("@attentivu/gatsby-source-notion-api", e, result);
+			console.error("@attentivu/gatsby-source-notion-api", e, result)
 			reporter.panic(errorMessage)
 		}
 	}
