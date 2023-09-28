@@ -2,6 +2,9 @@ const fetch = require("node-fetch")
 const { errorMessage } = require("../error-message")
 const { getBlocks } = require("./get-blocks")
 
+// https://developers.notion.com/reference/errors#rate-limits
+const RATE_LIMIT = 1000/3;
+
 const delay = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function fetchPageChildren({ page, token, notionVersion }, reporter, cache) {
@@ -13,10 +16,8 @@ async function fetchPageChildren({ page, token, notionVersion }, reporter, cache
 		return children
 	}
 
-	// https://developers.notion.com/reference/errors#rate-limits
-	const rateLimit = 1000/3;
 	children = await getBlocks({ id: page.id, token, notionVersion }, reporter)
-	await delay(rateLimit) // HACKY
+	await delay(RATE_LIMIT)
 	await cache.set(cacheKey, children)
 	return children
 }
@@ -47,6 +48,7 @@ exports.getPages = async ({ token, databaseId, notionVersion = "2022-06-28" }, r
 					Authorization: `Bearer ${token}`,
 				},
 			}).then((res) => res.json())
+			await delay(RATE_LIMIT)
 
 			startCursor = result.next_cursor
 			hasMore = result.has_more
