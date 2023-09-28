@@ -31,8 +31,9 @@ exports.getPages = async ({ token, databaseId, notionVersion = "2022-06-28" }, r
 			body.start_cursor = startCursor
 		}
 
+		let result;
 		try {
-			const result = await fetch(url, {
+			result = await fetch(url, {
 				method: "POST",
 				body: JSON.stringify(body),
 				headers: {
@@ -50,7 +51,7 @@ exports.getPages = async ({ token, databaseId, notionVersion = "2022-06-28" }, r
 				pages.push(page)
 			}
 		} catch (e) {
-			console.error("@attentivu/gatsby-source-notion-api",e);
+			console.error("@attentivu/gatsby-source-notion-api", e, result);
 			reporter.panic(errorMessage)
 		}
 	}

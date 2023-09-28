@@ -1,6 +1,6 @@
 {
 	"name": "@attentivu/gatsby-source-notion-api",
-	"version": "0.13.1",
+	"version": "0.13.2",
 	"description": "Gatsby source plugin for official Notion.so API",
 	"main": "index.js",
 	"scripts": {
@@ -16,7 +16,7 @@
 		"gatsby-plugin",
 		"notion"
 	],
-	"author": "Sergei Orlov <hello@orlow.dev> (https://orlow.dev/), Nataliya Kosmyna",
+	"author": "Sergei Orlov <hello@orlow.dev>, Nataliya Kosmyna <nkosmyna@mit.edu>",
 	"license": "MIT",
 	"homepage": "https://github.com/nataliyakosmyna/gatsby-source-notion-api",
 	"bugs": {
