@@ -13,8 +13,9 @@ exports.getBlocks = async ({ id, notionVersion, token }, reporter) => {
 			url += `?start_cursor=${startCursor}`
 		}
 
+		let result;
 		try {
-			const result = await fetch(url, {
+			result = await fetch(url, {
 				headers: {
 					"Content-Type": "application/json",
 					"Notion-Version": notionVersion,
@@ -35,7 +36,7 @@ exports.getBlocks = async ({ id, notionVersion, token }, reporter) => {
 			startCursor = result.next_cursor
 			hasMore = result.has_more
 		} catch (e) {
-			console.error("@attentivu/gatsby-source-notion-api",e);
+			console.error("@attentivu/gatsby-source-notion-api", e, result);
 			reporter.panic(errorMessage)
 		}
 	}
