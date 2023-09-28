@@ -7,10 +7,10 @@
   Gatsby Source Plugin Notion API
 </h1>
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/669015699caf1728d984/maintainability)](https://codeclimate.com/github/orlowdev/gatsby-source-notion-api/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/669015699caf1728d984/maintainability)](https://codeclimate.com/github/nataliyakosmyna/gatsby-source-notion-api/maintainability)
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![versioning: or-release](https://img.shields.io/badge/versioning-%7C%7Cr-E76D83.svg)](https://github.com/orlowdev/or-release)
+[![versioning: or-release](https://img.shields.io/badge/versioning-%7C%7Cr-E76D83.svg)](https://github.com/nataliyakosmyna/or-release)
 
 Gatsby source plugin for working with official [Notion](https://notion.so) API.
 
@@ -24,7 +24,6 @@ in beta). With this plugin, you will be able to query your Notion pages in Gatsb
 [Notion API Reference](https://developers.notion.com/reference/intro)
 
 [An example](https://gatsby-source-notion-api-demo.netlify.app)
-
 
 ## Features
 
