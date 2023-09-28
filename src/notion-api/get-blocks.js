@@ -39,7 +39,7 @@ exports.getBlocks = async ({ id, notionVersion, token }, reporter) => {
 			hasMore = result.has_more
 		} catch (e) {
 			console.error("@attentivu/gatsby-source-notion-api", e, result)
-			reporter.panic(errorMessage)
+			// reporter.panic(errorMessage)
 		}
 	}
 

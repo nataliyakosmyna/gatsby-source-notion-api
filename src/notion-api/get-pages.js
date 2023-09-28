@@ -56,12 +56,16 @@ exports.getPages = async ({ token, databaseId, notionVersion = "2022-06-28" }, r
 			hasMore = result.has_more
 
 			for (let page of result.results) {
-				page.children = await fetchPageChildren({ page, token, notionVersion }, reporter, cache)
-				pages.push(page)
+				try {
+					page.children = await fetchPageChildren({ page, token, notionVersion }, reporter, cache)
+					pages.push(page)
+				} catch (e) {
+					console.error("@attentivu/gatsby-source-notion-api", e, result)
+				}
 			}
 		} catch (e) {
 			console.error("@attentivu/gatsby-source-notion-api", e, result)
-			reporter.panic(errorMessage)
+			// reporter.panic(errorMessage)
 		}
 	}
 
