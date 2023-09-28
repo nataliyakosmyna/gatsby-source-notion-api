@@ -2,6 +2,8 @@ const fetch = require("node-fetch")
 const { errorMessage } = require("../error-message")
 const { getBlocks } = require("./get-blocks")
 
+const delay = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
+
 async function fetchPageChildren({ page, token, notionVersion }, reporter, cache) {
 	let cacheKey = `notionApiPageChildren:${page.id}:${page.last_edited_time}`
 
@@ -11,7 +13,10 @@ async function fetchPageChildren({ page, token, notionVersion }, reporter, cache
 		return children
 	}
 
+	// https://developers.notion.com/reference/errors#rate-limits
+	const rateLimit = 1000/3;
 	children = await getBlocks({ id: page.id, token, notionVersion }, reporter)
+	await delay(rateLimit) // HACKY
 	await cache.set(cacheKey, children)
 	return children
 }
