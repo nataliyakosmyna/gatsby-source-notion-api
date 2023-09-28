@@ -8,9 +8,10 @@ const NOTION_NODE_TYPE = "Notion"
 
 exports.sourceNodes = async (
 	{ actions, createContentDigest, createNodeId, reporter, cache },
-	{ token, databaseId, propsToFrontmatter = true, lowerTitleLevel = true },
+	{ token, databaseId, propsToFrontmatter = true, lowerTitleLevel = true, version },
 ) => {
-	const pages = await getPages({ token, databaseId }, reporter, cache)
+	const notionVersion = version ? version : "2022-06-28"
+	const pages = await getPages({ token, databaseId, notionVersion }, reporter, cache)
 
 	pages.forEach((page) => {
 		const title = getNotionPageTitle(page)
