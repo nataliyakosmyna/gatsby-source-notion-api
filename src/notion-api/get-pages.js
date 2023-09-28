@@ -37,7 +37,7 @@ exports.getPages = async ({ token, databaseId, notionVersion = "2022-06-28" }, r
 			body.start_cursor = startCursor
 		}
 
-		let result = {}
+		let result = { results: [] }
 		try {
 			const raw = await fetch(url, {
 				method: "POST",
