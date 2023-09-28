@@ -16,16 +16,15 @@
 		"gatsby-plugin",
 		"notion"
 	],
-	"author": "Sergei Orlov <hello@orlow.dev> (https://orlow.dev/)",
-	"license": "0BSD",
-	"homepage": "https://github.com/orlowdev/gatsby-source-notion-api",
+	"author": "Sergei Orlov <hello@orlow.dev> (https://orlow.dev/), Nataliya Kosmyna",
+	"license": "MIT",
+	"homepage": "https://github.com/nataliyakosmyna/gatsby-source-notion-api",
 	"bugs": {
-		"email": "hello@orlow.dev",
-		"url": "https://github.com/orlowdev/gatsby-source-notion-api/issues"
+		"url": "https://github.com/nataliyakosmyna/gatsby-source-notion-api/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com/orlowdev/gatsby-source-notion-api.git"
+		"url": "git+ssh://git@github.com/nataliyakosmyna/gatsby-source-notion-api.git"
 	},
 	"dependencies": {
 		"node-fetch": "^2.6.1",
