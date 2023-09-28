@@ -22,7 +22,7 @@ exports.sourceNodes = async (
 			const frontmatter = Object.keys(properties).reduce(
 				(acc, key) => ({
 					...acc,
-					[key]: properties[key].value.remoteImage || properties[key].value,
+					[key]: properties[key].value ? properties[key].value.remoteImage : properties[key].value,
 				}),
 				{ title },
 			)
