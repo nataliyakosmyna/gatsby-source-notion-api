@@ -16,7 +16,7 @@ async function fetchPageChildren({ page, token, notionVersion }, reporter, cache
 	return children
 }
 
-exports.getPages = async ({ token, databaseId, notionVersion = "2021-05-13" }, reporter, cache) => {
+exports.getPages = async ({ token, databaseId, notionVersion = "2023-09-21" }, reporter, cache) => {
 	let hasMore = true
 	let startCursor = ""
 	const url = `https://api.notion.com/v1/databases/${databaseId}/query`
@@ -50,6 +50,7 @@ exports.getPages = async ({ token, databaseId, notionVersion = "2021-05-13" }, r
 				pages.push(page)
 			}
 		} catch (e) {
+			console.error("@attentivu/gatsby-source-notion-api",e);
 			reporter.panic(errorMessage)
 		}
 	}

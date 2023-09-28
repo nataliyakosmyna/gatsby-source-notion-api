@@ -25,7 +25,6 @@ in beta). With this plugin, you will be able to query your Notion pages in Gatsb
 
 [An example](https://gatsby-source-notion-api-demo.netlify.app)
 
-[Here's my blog running on gatsby-source-notion-api](https://orlow.dev)
 
 ## Features
 
@@ -46,13 +45,13 @@ in beta). With this plugin, you will be able to query your Notion pages in Gatsb
 ## Install
 
 ```sh
-yarn add gatsby-source-notion-api
+yarn add @attentivu/gatsby-source-notion-api
 ```
 
 or
 
 ```sh
-npm install --save gatsby-source-notion-api
+npm install --save @attentivu/gatsby-source-notion-api
 ```
 
 ## How to use
